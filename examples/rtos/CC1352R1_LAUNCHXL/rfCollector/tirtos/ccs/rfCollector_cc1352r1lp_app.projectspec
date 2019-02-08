@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <!-- Import TI-RTOS dependency -->
+    <import spec="${COM_TI_SIMPLELINK_CC13X2_SDK_INSTALL_DIR}/kernel/tirtos/builds/CC1352R1_LAUNCHXL/release/ccs/tirtos_builds_CC1352R1_LAUNCHXL_release_ccs.projectspec"/>
+
+    <project
+        name="rfCollector_cc1352r1lp_app"
+        description="An synchronous collector example based on the RF Driver"
+        device="Cortex M.CC1352R1F3"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        connection="TIXDS110_Connection.xml"
+        toolChain="TI"
+        cgtVersion="16.9"
+        launchWizard="false"
+        references="tirtos_builds_CC1352R1_LAUNCHXL_release_ccs"
+        compilerBuildOptions="
+            -mv7M4 -O4 --opt_for_speed=0 --code_state=16 --float_support=FPv4SPD16 -me
+            -DDeviceFamily_CC13X2
+            -DBOARD_DISPLAY_USE_UART_ANSI
+            -I${PROJECT_ROOT}
+            -I${COM_TI_SIMPLELINK_CC13X2_SDK_INSTALL_DIR}/source/ti/posix/ccs
+            -I${CG_TOOL_ROOT}/include"
+        linkerBuildOptions="
+            -l${COM_TI_SIMPLELINK_CC13X2_SDK_INSTALL_DIR}/source/ti/display/lib/display.aem4f
+            -l${COM_TI_SIMPLELINK_CC13X2_SDK_INSTALL_DIR}/source/ti/drivers/rf/lib/rf_multiMode_cc13x2_v1.aem4f
+            -l${COM_TI_SIMPLELINK_CC13X2_SDK_INSTALL_DIR}/source/ti/drivers/lib/drivers_cc13x2_v1.aem4f
+            -l${COM_TI_SIMPLELINK_CC13X2_SDK_INSTALL_DIR}/kernel/tirtos/packages/ti/dpl/lib/dpl_cc13x2_v1.aem4f
+            -l${COM_TI_SIMPLELINK_CC13X2_SDK_INSTALL_DIR}/source/ti/devices/cc13x2_cc26x2_v1/driverlib/bin/ccs/driverlib.lib
+            -i${CG_TOOL_ROOT}/lib
+            -llibc.a
+            --warn_sections
+            --display_error_number
+            --diag_wrap=off
+            --rom_model"
+    >
+
+        <!-- Project properties -->
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+
+        <pathVariable name="EXAMPLE_PROP_ROOT" path="../.." scope="project"/>
+        <pathVariable name="SDK_SOURCE_DIR" path="${COM_TI_SIMPLELINK_CC13X2_SDK_INSTALL_DIR}/source/ti" scope="project"/>
+
+        <!-- Application -->
+        <file path="EXAMPLE_PROP_ROOT/tirtos/main_tirtos.c" openOnCreation="" excludeFromBuild="false" action="copy" targetDirectory="" createVirtualFolders="true"/>
+        <file path="EXAMPLE_PROP_ROOT/src/rfCollector.c" openOnCreation="" excludeFromBuild="false" action="copy" targetDirectory="" createVirtualFolders="true"/>
+        <file path="EXAMPLE_PROP_ROOT/src/RadioProtocol.h" openOnCreation="" excludeFromBuild="false" action="copy" targetDirectory="" createVirtualFolders="true"/>
+        <file path="EXAMPLE_PROP_ROOT/src/RFQueue.c" openOnCreation="" excludeFromBuild="false" action="copy" targetDirectory="" createVirtualFolders="true"/>
+        <file path="EXAMPLE_PROP_ROOT/src/RFQueue.h" openOnCreation="" excludeFromBuild="false" action="copy" targetDirectory="" createVirtualFolders="true"/>
+
+        <!-- Readme -->
+        <file path="EXAMPLE_PROP_ROOT/README.md" openOnCreation="" excludeFromBuild="false" action="copy" targetDirectory="" createVirtualFolders="true"/>
+
+        <!-- RF Settings -->
+        <file path="EXAMPLE_PROP_ROOT/src/smartrf_settings/smartrf_settings.c" openOnCreation="" excludeFromBuild="false" action="copy" targetDirectory="smartrf_settings" createVirtualFolders="true"/>
+        <file path="EXAMPLE_PROP_ROOT/src/smartrf_settings/smartrf_settings.h" openOnCreation="" excludeFromBuild="false" action="copy" targetDirectory="smartrf_settings" createVirtualFolders="true"/>
+
+        <!-- Board and device specifics -->
+        <file path="SDK_SOURCE_DIR/boards/CC1352R1_LAUNCHXL/CC1352R1_LAUNCHXL_fxns.c" openOnCreation="" excludeFromBuild="false" action="copy" targetDirectory="" createVirtualFolders="true"/>
+        <file path="SDK_SOURCE_DIR/boards/CC1352R1_LAUNCHXL/CC1352R1_LAUNCHXL.c" openOnCreation="" excludeFromBuild="false" action="copy" targetDirectory="" createVirtualFolders="true"/>
+        <file path="SDK_SOURCE_DIR/boards/CC1352R1_LAUNCHXL/CC1352R1_LAUNCHXL.h" openOnCreation="" excludeFromBuild="false" action="copy" targetDirectory="" createVirtualFolders="true"/>
+        <file path="SDK_SOURCE_DIR/boards/CC1352R1_LAUNCHXL/Board.h" openOnCreation="" excludeFromBuild="false" action="copy" targetDirectory="" createVirtualFolders="true"/>
+        <file path="SDK_SOURCE_DIR/boards/CC1352R1_LAUNCHXL/ccfg.c" openOnCreation="" excludeFromBuild="false" action="copy" targetDirectory="" createVirtualFolders="true"/>
+        <file path="SDK_SOURCE_DIR/boards/CC1352R1_LAUNCHXL/CC1352R1_LAUNCHXL_TIRTOS.cmd" openOnCreation="" excludeFromBuild="false" action="copy" targetDirectory="" createVirtualFolders="true"/>
+    </project>
+</projectSpec>
