@@ -64,7 +64,7 @@ SimpleLink Long Range, it might be necessary to increase the TIMESLOT_SIZE.
 A graphical representation of how the beacon interval is divided is shown
 below:
 
-![](C:\Workspaces\General\resources\beacon_interval_time_slot_dist.png)
+![](resources/beacon_interval_time_slot_dist.png)
 
 The first time-slot is reserved for the collector beacon. A sensor that
 listens for a beacon may respond to a beacon, requesting association with the
@@ -75,7 +75,7 @@ The application implements a light weight collision avoidance functionality
 used during association. This include "Listen before talk" combined
 with a random start delay calculated during initialization.
 
-![](C:\Workspaces\General\resources\association_sequence.png)
+![](resources/association_sequence.png)
 
 During association, the collector will distribute a time-slot to the sensor.
 The sensor will then use the time stamp provided by the Radio Core together
@@ -86,7 +86,7 @@ assigned to that particular time slot. When receiving a sensor packet, the
 collector will acknowledge the sensor by responding with an ACK. A sequence
 diagram of the complete beacon interval is seen below:
 
-![](C:\Workspaces\General\resources\complete_sequence.png)
+![](resources/complete_sequence.png)
 
 When expecting to receive a packet from a particular sensor, the address
 filtering feature provided by the Radio Core is leveraged.
